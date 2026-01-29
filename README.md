@@ -1,112 +1,112 @@
-# 🛍️ Myntra Review Analysis & Sentiment Intelligence Platform  
+# 🛍️ Myntra Review Analysis & Customer Insight Platform  
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-Expert-blue?style=for-the-badge&logo=python"/>
-  <img src="https://img.shields.io/badge/Data%20Science-Real--World-green?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Streamlit-Live%20App-FF4B4B?style=for-the-badge&logo=streamlit"/>
-  <img src="https://img.shields.io/badge/Status-Interview%20Ready-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Python-Advanced-blue?style=for-the-badge&logo=python"/>
+  <img src="https://img.shields.io/badge/Web%20Scraping-Real%20World-orange?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Streamlit-Interactive%20App-FF4B4B?style=for-the-badge&logo=streamlit"/>
+  <img src="https://img.shields.io/badge/Portfolio-Interview%20Ready-success?style=for-the-badge"/>
 </p>
 
 <p align="center">
-  <b>From raw customer reviews to business-ready insights — end to end.</b>
+  <b>End-to-end data project: scraping → analysis → visualization → deployment mindset</b>
 </p>
 
 <p align="center">
-  🚀 <a href="YOUR_STREAMLIT_APP_LINK_HERE"><b>LIVE STREAMLIT DEMO</b></a> • 
-  📂 <a href="https://github.com/Sid-art6/myntra_review_project"><b>GitHub Repository</b></a>
+  📂 <a href="https://github.com/Sid-art6/myntra_review_project"><b>GitHub Repository</b></a> • 
+  🚀 <a href="http://localhost:8501/"><b>Streamlit App (Local Demo)</b></a>
 </p>
 
 ---
 
-## 🌟 Why HRs & Interviewers Love This Project
+## 🌟 Why This Project Impresses HRs
 
-> This project is not just about coding.  
-> It demonstrates **real-world problem solving, business thinking, and deployment skills**.
+> This project is built like a **real industry assignment**, not a tutorial.
 
-✔️ Real e-commerce data use case  
-✔️ End-to-end ownership (scraping → analysis → deployment)  
-✔️ Live, interactive application (Streamlit)  
-✔️ Strong talking points for interviews  
+✔️ Uses **real e-commerce customer data**  
+✔️ Shows **end-to-end ownership**  
+✔️ Includes **interactive UI (Streamlit)**  
+✔️ Demonstrates **business + technical thinking**  
 
-👉 **Exactly the kind of project recruiters look for.**
+📌 *Exactly the type of project interviewers love to deep-dive into.*
 
 ---
 
 ## 📌 Project Overview
 
-The **Myntra Review Analysis Platform** is a complete data pipeline that:
-- Scrapes customer reviews from Myntra product pages  
-- Cleans and structures unorganized review data  
-- Analyzes customer sentiment and ratings  
-- Presents insights through an interactive **Streamlit web application**
+The **Myntra Review Analysis Platform** extracts and analyzes customer reviews from Myntra to understand:
+- Customer sentiment  
+- Product quality perception  
+- Rating trends and feedback patterns  
 
-🎯 The project helps understand **customer behavior, product quality, and sentiment trends** — a critical business need in e-commerce.
+The processed insights are displayed through a **Streamlit-based interactive dashboard**, making the project usable even for non-technical users.
+
+🎯 This simulates how real companies analyze customer feedback at scale.
 
 ---
 
-## 🚀 Live Application (Streamlit)
+## 🚀 Streamlit Application (Interactive Dashboard)
 
 <p align="center">
-  🔴 <b>LIVE DEMO:</b><br>
-  👉 <a href="YOUR_STREAMLIT_APP_LINK_HERE"><b>Click here to explore the Streamlit App</b></a>
+  🔴 <b>Local Streamlit Demo</b><br>
+  👉 <a href="http://localhost:8501/"><b>http://localhost:8501/</b></a>
 </p>
 
-### What the App Shows:
-- ⭐ Average product ratings  
-- 🗣️ Customer review sentiment (Positive / Neutral / Negative)  
-- 📊 Interactive charts & filters  
-- 🔍 Real-time insights from scraped data  
+### What the Streamlit App Demonstrates:
+- ⭐ Average product ratings
+- 🗣️ Customer review sentiment insights
+- 📊 Interactive charts and filters
+- 🔍 Business-friendly visualization of scraped data
 
-> This proves the project is **usable, not just theoretical**.
+> 💡 Even though this is a local deployment, it proves **UI + deployment capability**, not just backend coding.
 
 ---
 
-## 🔍 Core Features
+## 🔍 Core Functionalities
 
-### 🕷️ Intelligent Web Scraping
-- Extracts Myntra product reviews dynamically  
-- Handles pagination and real-world HTML complexity  
-- Built using **Selenium & BeautifulSoup**
+### 🕷️ Web Scraping (Real-World Data)
+- Scrapes product reviews from Myntra pages
+- Handles dynamic content and pagination
+- Built using **Selenium + BeautifulSoup**
 
-### 🧹 Data Cleaning & Processing
-- Removes noise and inconsistencies  
-- Converts unstructured text into clean datasets  
-- Ready for analytics and machine learning
+### 🧹 Data Cleaning & Transformation
+- Handles noisy user-generated text
+- Converts raw HTML data into clean datasets
+- Prepares data for analytics & ML use
 
-### 📊 Data Analysis & Insights
-- Rating distributions  
-- Review sentiment trends  
-- Keyword-based customer feedback analysis  
+### 📊 Data Analysis
+- Rating distribution analysis
+- Review trend identification
+- Sentiment-ready structured data
 
-### 🌐 Streamlit Deployment
-- Interactive UI for non-technical users  
-- Business-friendly visualization  
-- Shareable live application link
+### 🌐 Streamlit Visualization
+- Interactive dashboard
+- Non-technical friendly UI
+- Ready for cloud deployment
 
 ---
 
 ## 🧠 Strong Interview Talking Points
 
-✔️ Handling dynamic web pages  
-✔️ Ethical scraping considerations  
-✔️ Challenges with user-generated text  
-✔️ Designing scalable data pipelines  
-✔️ Translating data into business insights  
-✔️ End-to-end project deployment experience  
+✔️ Handling dynamic websites  
+✔️ Ethical considerations in scraping  
+✔️ Cleaning unstructured customer text  
+✔️ Designing scalable pipelines  
+✔️ Turning data into business insights  
+✔️ Building deployable analytical apps  
 
-💬 *Interviewers usually ask multiple follow-up questions from this project.*
+💬 *This project naturally drives interview discussions.*
 
 ---
 
-## 🗂️ Project Architecture
+## 🗂️ Project Structure
 
 ```text
 myntra_review_project/
 │
-├── src/                 # Scraping & processing logic
+├── src/                 # Scraping & processing modules
 ├── data/                # Cleaned review datasets
-├── notebooks/           # EDA & analysis
-├── streamlit_app.py     # Streamlit application
-├── app.py               # Main pipeline runner
+├── notebooks/           # Analysis & EDA
+├── streamlit_app.py     # Streamlit dashboard
+├── app.py               # Main execution pipeline
 ├── requirements.txt     # Dependencies
 └── README.md            # Documentation
