@@ -12,8 +12,7 @@
 </p>
 
 <p align="center">
-  📂 <a href="https://github.com/Sid-art6/myntra_review_project"><b>GitHub Repository</b></a> • 
-  🚀 <a href="http://localhost:8501/"><b>Streamlit App (Local Demo)</b></a>
+  📂 <a href="https://github.com/Sid-art6/myntra_review_project"><b>GitHub Repository</b></a>
 </p>
 
 ---
@@ -22,18 +21,19 @@
 
 > This project is built like a **real industry assignment**, not a tutorial.
 
-✔️ Uses **real e-commerce customer data**  
-✔️ Shows **end-to-end ownership**  
-✔️ Includes **interactive UI (Streamlit)**  
-✔️ Demonstrates **business + technical thinking**  
+✔️ Uses real e-commerce customer data  
+✔️ Shows end-to-end ownership  
+✔️ Includes interactive UI (Streamlit)  
+✔️ Demonstrates business + technical thinking  
 
-📌 *Exactly the type of project interviewers love to deep-dive into.*
+📌 Exactly the type of project interviewers love to deep-dive into.
 
 ---
 
 ## 📌 Project Overview
 
 The **Myntra Review Analysis Platform** extracts and analyzes customer reviews from Myntra to understand:
+
 - Customer sentiment  
 - Product quality perception  
 - Rating trends and feedback patterns  
@@ -46,18 +46,13 @@ The processed insights are displayed through a **Streamlit-based interactive das
 
 ## 🚀 Streamlit Application (Interactive Dashboard)
 
-<p align="center">
-  🔴 <b>Local Streamlit Demo</b><br>
-  👉 <a href="http://localhost:8501/"><b>http://localhost:8501/</b></a>
-</p>
-
 ### What the Streamlit App Demonstrates:
 - ⭐ Average product ratings
 - 🗣️ Customer review sentiment insights
 - 📊 Interactive charts and filters
 - 🔍 Business-friendly visualization of scraped data
 
-> 💡 Even though this is a local deployment, it proves **UI + deployment capability**, not just backend coding.
+> 💡 Run locally to explore the full dashboard experience.
 
 ---
 
@@ -69,32 +64,19 @@ The processed insights are displayed through a **Streamlit-based interactive das
 - Built using **Selenium + BeautifulSoup**
 
 ### 🧹 Data Cleaning & Transformation
-- Handles noisy user-generated text
-- Converts raw HTML data into clean datasets
+- Cleans noisy user-generated text
+- Converts raw HTML into structured datasets
 - Prepares data for analytics & ML use
 
 ### 📊 Data Analysis
 - Rating distribution analysis
 - Review trend identification
-- Sentiment-ready structured data
+- Insight generation
 
 ### 🌐 Streamlit Visualization
 - Interactive dashboard
 - Non-technical friendly UI
-- Ready for cloud deployment
-
----
-
-## 🧠 Strong Interview Talking Points
-
-✔️ Handling dynamic websites  
-✔️ Ethical considerations in scraping  
-✔️ Cleaning unstructured customer text  
-✔️ Designing scalable pipelines  
-✔️ Turning data into business insights  
-✔️ Building deployable analytical apps  
-
-💬 *This project naturally drives interview discussions.*
+- Ready for deployment
 
 ---
 
@@ -109,4 +91,12 @@ myntra_review_project/
 ├── streamlit_app.py     # Streamlit dashboard
 ├── app.py               # Main execution pipeline
 ├── requirements.txt     # Dependencies
-└── README.md            # Documentation
+└── README.md
+
+1️⃣ Clone the Repository
+
+git clone https://github.com/Sid-art6/myntra_review_project.git
+cd myntra_review_project
+
+2️⃣ Create Virtual Environment (Recommended)
+conda activate ./env
