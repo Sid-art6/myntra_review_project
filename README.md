@@ -101,9 +101,3 @@ cd myntra_review_project
 2️⃣ Create Virtual Environment (Recommended)
 conda activate ./env
 
----
-
-1️⃣ Clone the Repository
-
-git clone https://github.com/Sid-art6/myntra_review_project.git
-cd myntra_review_project
