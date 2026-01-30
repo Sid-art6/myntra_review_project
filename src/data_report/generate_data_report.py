@@ -1,77 +1,186 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
+import sys
 
-import os, sys
 from src.exception import CustomException
 
 
 class DashboardGenerator:
-    def __init__(self, data):
-        self.data = data
+    def __init__(self, data: pd.DataFrame):
+        self.data = data.copy()
+        self._clean_data()
+        self._style()   # ⭐ inject styling
 
+
+    # =========================================================
+    # 🎨 STYLING (makes dashboard beautiful)
+    # =========================================================
+    def _style(self):
+
+        st.markdown("""
+        <style>
+
+        /* remove white background */
+        .main {background: transparent !important;}
+        .block-container {padding-top: 1.5rem;}
+
+        /* glass cards */
+        .dash-card {
+            background: rgba(255,255,255,0.96);
+            padding: 22px;
+            border-radius: 18px;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+            margin-bottom: 25px;
+        }
+
+        .dash-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        </style>
+        """, unsafe_allow_html=True)
+
+
+    # =========================================================
+    # 🧹 DATA CLEANING
+    # =========================================================
+    def _clean_data(self):
+
+        try:
+            self.data["Over_All_Rating"] = pd.to_numeric(
+                self.data["Over_All_Rating"], errors="coerce"
+            )
+
+            self.data["Rating"] = pd.to_numeric(
+                self.data["Rating"], errors="coerce"
+            )
+
+            self.data["Price"] = (
+                self.data["Price"]
+                .astype(str)
+                .str.replace("₹", "", regex=False)
+                .str.replace(",", "", regex=False)
+            )
+
+            self.data["Price"] = pd.to_numeric(self.data["Price"], errors="coerce")
+
+        except Exception as e:
+            raise CustomException(e, sys)
+
+
+    # =========================================================
+    # 📊 GENERAL INFO + KPI + 2 MAIN CHARTS
+    # =========================================================
     def display_general_info(self):
-        st.header('General Information')
 
-        # Convert 'Over_All_Rating' and 'Price' columns to numeric
-        self.data['Over_All_Rating'] = pd.to_numeric(self.data['Over_All_Rating'], errors='coerce')
-        self.data['Price'] = pd.to_numeric(
-            self.data['Price'].apply(lambda x: x.replace("₹", "")),
-            errors='coerce')
+        st.markdown('<div class="dash-title">📊 General Product Insights</div>', unsafe_allow_html=True)
 
-        self.data["Rating"] = pd.to_numeric(self.data['Rating'], errors='coerce')
 
-        # Summary pie chart of average ratings by product
-        product_ratings = self.data.groupby('Product Name', as_index=False)['Over_All_Rating'].mean().dropna()
+        # ---------------- KPI CARDS ----------------
+        c1, c2, c3, c4 = st.columns(4)
 
-        fig_pie = px.pie(product_ratings, values='Over_All_Rating', names='Product Name',
-                         title='Average Ratings by Product')
-        st.plotly_chart(fig_pie)
+        c1.metric("Total Reviews", len(self.data))
+        c2.metric("Avg Rating", round(self.data["Over_All_Rating"].mean(), 2))
+        c3.metric("Avg Price", f"₹{round(self.data['Price'].mean(), 2)}")
+        c4.metric("Products", self.data["Product Name"].nunique())
 
-        # Bar chart comparing average prices of different products with different colors
-        avg_prices = self.data.groupby('Product Name', as_index=False)['Price'].mean().dropna()
-        fig_bar = px.bar(avg_prices, x='Product Name', y='Price', color='Product Name',
-                         title='Average Price Comparison Between Products',
-                         color_discrete_sequence=px.colors.qualitative.Bold)
-        fig_bar.update_xaxes(title='Product Name')
-        fig_bar.update_yaxes(title='Average Price')
-        st.plotly_chart(fig_bar)
 
+        # ---------------- CHART ROW ----------------
+        col1, col2 = st.columns(2)
+
+
+        # ⭐ Chart 1 → Rating donut
+        with col1:
+            st.markdown('<div class="dash-card">', unsafe_allow_html=True)
+
+            rating_df = (
+                self.data.groupby("Product Name", as_index=False)["Over_All_Rating"]
+                .mean()
+            )
+
+            fig = px.pie(
+                rating_df,
+                values="Over_All_Rating",
+                names="Product Name",
+                hole=0.6,
+                title="Average Rating Share",
+                template="plotly_white"
+            )
+
+            st.plotly_chart(fig, use_container_width=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+
+
+        # ⭐ Chart 2 → Price bar
+        with col2:
+            st.markdown('<div class="dash-card">', unsafe_allow_html=True)
+
+            price_df = (
+                self.data.groupby("Product Name", as_index=False)["Price"]
+                .mean()
+            )
+
+            fig2 = px.bar(
+                price_df,
+                x="Product Name",
+                y="Price",
+                text_auto=".2f",
+                title="Average Price Comparison",
+                template="plotly_white"
+            )
+
+            st.plotly_chart(fig2, use_container_width=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+
+
+    # =========================================================
+    # 🛍️ PRODUCT SECTIONS (2 MORE CHARTS ONLY)
+    # =========================================================
     def display_product_sections(self):
-        st.header('Product Sections')
 
-        product_names = self.data['Product Name'].unique()
-        columns = st.columns(len(product_names))
+        st.markdown('<div class="dash-title">🛍️ Product-wise Review Analysis</div>', unsafe_allow_html=True)
 
-        for i, product_name in enumerate(product_names):
-            product_data = self.data[self.data['Product Name'] == product_name]
 
-            with columns[i]:
-                st.subheader(f'{product_name}')
+        # ⭐ Chart 3 → Overall rating distribution
+        st.markdown('<div class="dash-card">', unsafe_allow_html=True)
 
-                # Display price in text or markdown with emojis
-                avg_price = product_data['Price'].mean()
-                st.markdown(f"💰 Average Price: ₹{avg_price:.2f}")
+        rating_counts = self.data["Rating"].value_counts().sort_index().reset_index()
+        rating_counts.columns = ["Rating", "Count"]
 
-                # Display average rating
-                avg_rating = product_data['Over_All_Rating'].mean()
-                st.markdown(f"⭐ Average Rating: {avg_rating:.2f}")
+        fig3 = px.bar(
+            rating_counts,
+            x="Rating",
+            y="Count",
+            title="Overall Rating Distribution",
+            template="plotly_white"
+        )
 
-                # Display top positive comments with great ratings
-                positive_reviews = product_data[product_data['Rating'] >= 4.5].nlargest(5, 'Rating')
-                st.subheader('Positive Reviews')
-                for index, row in positive_reviews.iterrows():
-                    st.markdown(f"✨ Rating: {row['Rating']} - {row['Comment']}")
+        st.plotly_chart(fig3, use_container_width=True)
 
-                # Display top negative comments with worst ratings
-                negative_reviews = product_data[product_data['Rating'] <= 2].nsmallest(5, 'Rating')
-                st.subheader('Negative Reviews')
-                for index, row in negative_reviews.iterrows():
-                    st.markdown(f"💢 Rating: {row['Rating']} - {row['Comment']}")
+        st.markdown('</div>', unsafe_allow_html=True)
 
-                # Display rating counts in different categories
-                st.subheader('Rating Counts')
-                rating_counts = product_data['Rating'].value_counts().sort_index(ascending=False)
-                for rating, count in rating_counts.items():
-                    st.write(f"🔹 Rating {rating} count: {count}")
+
+        # ⭐ Chart 4 → Review count per product
+        st.markdown('<div class="dash-card">', unsafe_allow_html=True)
+
+        count_df = (
+            self.data["Product Name"]
+            .value_counts()
+            .reset_index()
+        )
+        count_df.columns = ["Product Name", "Reviews"]
+
+        fig4 = px.bar(
+            count_df,
+            x="Product Name",
+            y="Reviews",
+            title="Reviews per Product",
+            template="plotly_white"
+        )
+
+        st.plotly_chart(fig4, use_container_width=True)
+
+        st.markdown('</div>', unsafe_allow_html=True)
